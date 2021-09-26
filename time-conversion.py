@@ -13,16 +13,30 @@ import sys
 # The function accepts STRING s as parameter.
 #
 
+
 def timeConversion(s):
     # Write your code here
+    # 12:01:00PM
+    # 0123456789
+    am_or_pm = s[8:]
+    format24 = s[0:8]
+    hour = int(s[0:2])
+    print(am_or_pm)
+    print(format24)
+    print(hour)
+    
+    if am_or_pm == 'PM' and hour < 12:
+        hour += 12
+        format24 = str(hour) + format24[2:8]
+    elif am_or_pm == 'AM' and hour == 12:
+        format24 = '00' + format24[2:8]
+        
+    return format24
+
 
 if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
     s = input()
 
     result = timeConversion(s)
 
-    fptr.write(result + '\n')
-
-    fptr.close()
+    print(result)
